@@ -26,18 +26,14 @@ export async function fetchStockData(ticker: string): Promise<StockInfo> {
 
 		// Fetch company details
 
-		const detailsResponse = await axios.get(
-			`${baseUrl}/v1/meta/symbols/${ticker}/company`,
-			config,
-		);
-		const { name, sector } = detailsResponse.data;
-		console.log(detailsResponse);
+		let url = `${baseUrl}/v3/reference/tickers/${ticker}`;
+		const detailsResponse = await axios.get(url, config);
+		const name = detailsResponse?.data?.results?.name;
+		const sector = detailsResponse?.data?.results?.sic_description;
 
 		// Fetch latest price
-		const quoteResponse = await axios.get(
-			`${baseUrl}/v2/aggs/ticker/${ticker}/prev?adjusted=true`,
-			config,
-		);
+		url = `${baseUrl}/v2/aggs/ticker/${ticker}/prev?adjusted=true`;
+		const quoteResponse = await axios.get(url, config);
 		console.log(quoteResponse.data);
 		const price = quoteResponse.data.results[0].c;
 
