@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 
-import { PortfolioHolding } from "@/stocks/stocks.ts";
+import type { PortfolioHolding } from "@/stocks/stocks.ts";
 
 //const portfolio: PortfolioHolding[] = [
 //  { ticker: "AAPL", shares: 100, sector: "Technology" },

@@ -1,7 +1,8 @@
-import { redirect } from "next/navigation";
 import { auth } from "@/auth/auth.ts";
-import Link from "next/link";
 import { Button } from "@/components/ui/button.tsx";
+import { UserManager } from "@/data/user.ts";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 import Portfolio from "../components/Portfolio.tsx";
 
 export default async function Home() {
@@ -9,6 +10,21 @@ export default async function Home() {
 
 	if (!session) {
 		redirect("/signin");
+	}
+
+	const userManager = new UserManager();
+
+	const email = session?.user?.email;
+	let user = null;
+	if (email) {
+		user = await userManager.getUserByEmail(email);
+	}
+
+	if (!user && email) {
+		// User doesn't exist, create a new user
+		const newUserId = await userManager.addUser(email);
+		user = { id: newUserId, email };
+		console.log(`New user created with ID: ${newUserId}`);
 	}
 
 	return (
@@ -21,7 +37,7 @@ export default async function Home() {
 					</Button>
 				</Link>
 			</div>
-			<Portfolio />
+			{user && <Portfolio userId={user.id} />}
 		</div>
 	);
 }

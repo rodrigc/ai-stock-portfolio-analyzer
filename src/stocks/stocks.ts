@@ -15,14 +15,13 @@ export async function fetchStockData(ticker: string): Promise<StockInfo> {
 	try {
 		// Replace 'YOUR_API_KEY' with your actual Polygon.io API key
 		const apiKey = process.env.POLYGON_API_KEY;
-		const baseUrl = "https://api.polygon.io";
+		const baseUrl = process.env.POLYGON_API_URL;
 
 		const config = {
 			headers: {
 				Authorization: `Bearer ${apiKey}`,
 			},
 		};
-		console.log("BLAH");
 
 		// Fetch company details
 
@@ -34,7 +33,7 @@ export async function fetchStockData(ticker: string): Promise<StockInfo> {
 		// Fetch latest price
 		url = `${baseUrl}/v2/aggs/ticker/${ticker}/prev?adjusted=true`;
 		const quoteResponse = await axios.get(url, config);
-		console.log(quoteResponse.data);
+		//console.log(quoteResponse.data);
 		const price = quoteResponse.data.results[0].c;
 
 		return {

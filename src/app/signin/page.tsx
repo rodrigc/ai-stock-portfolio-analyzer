@@ -1,18 +1,18 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
-import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
+	CardContent,
+	CardDescription,
+	CardFooter,
 	CardHeader,
 	CardTitle,
-	CardDescription,
-	CardContent,
-	CardFooter,
 } from "@/components/ui/card";
 import { SiGithub } from "@icons-pack/react-simple-icons";
+import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 
 const SignInContent = () => {
 	const searchParams = useSearchParams();
