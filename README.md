@@ -35,3 +35,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Screenshots
 
 ![screenshot1](images/screenshot1.png)
+
+
+## TODO
+
+* Optimize code to deal with 429 rate limit errors from Polygon
+* More robust error handling when failing to look up stock ticker
