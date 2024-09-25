@@ -14,6 +14,7 @@ class.
 
 * [Next.js](https://nextjs.org)
 * [React](https://react.dev)
+* [Auth.js](https://authjs.dev)
 * [Drizzle ORM](https://orm.drizzle.team) with Postgres database
 * [Polygon.io](https://polygon.io) for Stock market data 
 * [Anthropic Claude](https://claude.ai) for AI
