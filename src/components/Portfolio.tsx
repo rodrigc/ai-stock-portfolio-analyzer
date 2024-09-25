@@ -52,8 +52,8 @@ export default function Portfolio({ userId }: { userId: number }) {
 						if (!priceResponse.ok) {
 							throw new Error(`Failed to fetch price for ${stock.ticker}`);
 						}
-						const { price } = await priceResponse.json();
-						return { ...stock, price };
+						const { price, sector } = await priceResponse.json();
+						return { ...stock, price, sector };
 					}),
 				);
 				setStocks(updatedPortfolio);
