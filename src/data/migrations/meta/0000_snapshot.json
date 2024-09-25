@@ -1,0 +1,136 @@
+{
+	"id": "b4830dfc-ca3f-4749-9e28-5148e6f941db",
+	"prevId": "00000000-0000-0000-0000-000000000000",
+	"version": "7",
+	"dialect": "postgresql",
+	"tables": {
+		"public.portfolios": {
+			"name": "portfolios",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"user_id": {
+					"name": "user_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"stock_id": {
+					"name": "stock_id",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"quantity": {
+					"name": "quantity",
+					"type": "integer",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"portfolios_user_id_users_id_fk": {
+					"name": "portfolios_user_id_users_id_fk",
+					"tableFrom": "portfolios",
+					"tableTo": "users",
+					"columnsFrom": ["user_id"],
+					"columnsTo": ["id"],
+					"onDelete": "no action",
+					"onUpdate": "no action"
+				},
+				"portfolios_stock_id_stocks_id_fk": {
+					"name": "portfolios_stock_id_stocks_id_fk",
+					"tableFrom": "portfolios",
+					"tableTo": "stocks",
+					"columnsFrom": ["stock_id"],
+					"columnsTo": ["id"],
+					"onDelete": "no action",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {
+				"portfolios_id_user_id_stock_id_pk": {
+					"name": "portfolios_id_user_id_stock_id_pk",
+					"columns": ["id", "user_id", "stock_id"]
+				}
+			},
+			"uniqueConstraints": {}
+		},
+		"public.stocks": {
+			"name": "stocks",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"symbol": {
+					"name": "symbol",
+					"type": "varchar(10)",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"name": {
+					"name": "name",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {
+				"stocks_symbol_unique": {
+					"name": "stocks_symbol_unique",
+					"nullsNotDistinct": false,
+					"columns": ["symbol"]
+				}
+			}
+		},
+		"public.users": {
+			"name": "users",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"email": {
+					"name": "email",
+					"type": "varchar(255)",
+					"primaryKey": false,
+					"notNull": true
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {
+				"users_email_unique": {
+					"name": "users_email_unique",
+					"nullsNotDistinct": false,
+					"columns": ["email"]
+				}
+			}
+		}
+	},
+	"enums": {},
+	"schemas": {},
+	"sequences": {},
+	"_meta": {
+		"columns": {},
+		"schemas": {},
+		"tables": {}
+	}
+}

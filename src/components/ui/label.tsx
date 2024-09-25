@@ -1,6 +1,6 @@
-import React from "react";
+import type { LabelHTMLAttributes } from "react";
 
-interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
+interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
 	children: React.ReactNode;
 }
 
