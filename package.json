@@ -7,7 +7,6 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint",
 		"biome-lint": "biome lint",
 		"generate": "drizzle-kit --config ./src/database/drizzle.config.ts generate",
 		"migrate": "drizzle-kit --config ./src/database/drizzle.config.ts migrate"
